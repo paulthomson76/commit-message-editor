@@ -9,6 +9,8 @@
 #include <QFile>
 #include <QFileInfo>
 #include <QVBoxLayout>
+#include <QApplication>
+#include <QTextStream>
 
 /**
  *
@@ -21,12 +23,13 @@ MainWindow::MainWindow(const QString& fileName,
 {
 
     _subjectLineEdit = new QLineEdit;
-
     _subjectLineEdit->setMinimumWidth(600);
+    _subjectLineEdit->setFont(QFont("Roboto Mono"));
 
     _subjectLengthLabel = new QLabel(tr("0/50"));
 
     _bodyTextEdit = new QPlainTextEdit;
+    _bodyTextEdit->setFont(QFont("Roboto Mono"));
 
     _buttons = new QDialogButtonBox({QDialogButtonBox::Save, QDialogButtonBox::Cancel});
 
@@ -69,6 +72,7 @@ MainWindow::MainWindow(const QString& fileName,
 
     //
 
+    setWindowTitle(tr("Commit Message Editor - v") + QApplication::applicationVersion());
     setMinimumSize(720, 480);
 
     //

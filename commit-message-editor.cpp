@@ -20,6 +20,10 @@ int main(int argc, char *argv[])
 {
   QApplication app(argc, argv);
   
+  QApplication::setOrganizationName("pthomson.net");
+  QApplication::setApplicationName("commit-message-editor");
+  QApplication::setApplicationVersion("0.1.0");
+
   QCommandLineParser parser;
   parser.addVersionOption();
   parser.process(app);
