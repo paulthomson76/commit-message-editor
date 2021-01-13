@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
   
   QApplication::setOrganizationName("pthomson.net");
   QApplication::setApplicationName("commit-message-editor");
-  QApplication::setApplicationVersion("0.1.0");
+  QApplication::setApplicationVersion("0.1.1");
 
   QCommandLineParser parser;
   parser.addVersionOption();
