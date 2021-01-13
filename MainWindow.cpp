@@ -143,27 +143,41 @@ void MainWindow::saveCommitMessage()
     {
         line = line.trimmed();
 
-        if (line.length() > MaximumLineLength)
+        // Ignore lines that start with a #
+
+        if (false == line.startsWith('#'))
         {
-            while (line.length() > MaximumLineLength)
+            if (line.length() > MaximumLineLength)
             {
-                int p = line.lastIndexOf(' ', MaximumLineLength);
-                QString partOfLine = line;
-                partOfLine.truncate(p);
-                line.remove(0, p);
-                line = line.trimmed();
+                while (line.length() > MaximumLineLength)
+                {
+                    const int p = line.lastIndexOf(' ', MaximumLineLength);
 
-                parsedLines << (partOfLine);
+                    if (p >= 0)
+                    {
+                        QString partOfLine = line;
+                        partOfLine.truncate(p);
+                        line.remove(0, p);
+                        line = line.trimmed();
+
+                        parsedLines << (partOfLine);
+                    }
+                    else
+                    {
+                        // Couldn't break line on a space, so use it as-is
+                        break;
+                    }
+                }
+
+                if (line.length() > 0)
+                {
+                    parsedLines << (line);
+                }
             }
-
-            if (line.length() > 0)
+            else
             {
                 parsedLines << (line);
             }
-        }
-        else
-        {
-            parsedLines << (line);
         }
     }
 
